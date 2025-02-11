@@ -92,6 +92,26 @@ header h1 {
   margin-right: auto;
 }
 
+/* Reka bentuk untuk halaman bio */
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+#display-links a {
+  display: block;
+  margin: 10px 0;
+  color: #007bff;
+  text-decoration: none;
+}
+
+#display-links a:hover {
+  text-decoration: underline;
+}
+
 /* Responsive Design */
 @media (max-width: 600px) {
   header h1 {
