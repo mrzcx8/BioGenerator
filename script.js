@@ -7,6 +7,13 @@ const generateBioButton = document.getElementById('generate-bio');
 const bioLinkElement = document.getElementById('bio-link');
 const qrCodeCanvas = document.getElementById('qr-code');
 
+const bioGeneratorSection = document.getElementById('bio-generator');
+const bioDisplaySection = document.getElementById('bio-display');
+const displayName = document.getElementById('display-name');
+const displayProfilePic = document.getElementById('display-profile-pic');
+const displayBio = document.getElementById('display-bio');
+const displayLinks = document.getElementById('display-links');
+
 let profilePicUrl = ''; // Untuk menyimpan URL gambar
 
 // Fungsi untuk menukar fail gambar kepada URL Base64
@@ -46,8 +53,49 @@ function generateBioPage() {
   });
 }
 
+// Fungsi untuk mendapatkan parameter dari URL
+function getQueryParams() {
+  const params = {};
+  const queryString = window.location.search.substring(1);
+  const pairs = queryString.split('&');
+  pairs.forEach(pair => {
+    const [key, value] = pair.split('=');
+    params[key] = decodeURIComponent(value);
+  });
+  return params;
+}
+
 // Tambah event listener untuk upload gambar
 profilePicInput.addEventListener('change', handleImageUpload);
 
 // Tambah event listener untuk butang "Hasilkan Link Bio"
 generateBioButton.addEventListener('click', generateBioPage);
+
+// Semak sama ada pengguna membuka halaman bio atau generator
+document.addEventListener('DOMContentLoaded', () => {
+  const params = getQueryParams();
+
+  if (params.name && params.bio) {
+    // Paparkan halaman bio
+    bioGeneratorSection.style.display = 'none';
+    bioDisplaySection.style.display = 'block';
+
+    displayName.textContent = params.name;
+    displayBio.textContent = params.bio;
+
+    if (params.links) {
+      const linksArray = params.links.split(',');
+      linksArray.forEach(link => {
+        const linkElement = document.createElement('a');
+        linkElement.href = link;
+        linkElement.textContent = link;
+        linkElement.target = '_blank';
+        displayLinks.appendChild(linkElement);
+      });
+    }
+  } else {
+    // Paparkan halaman generator
+    bioGeneratorSection.style.display = 'block';
+    bioDisplaySection.style.display = 'none';
+  }
+});
