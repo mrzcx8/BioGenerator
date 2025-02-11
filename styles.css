@@ -1,0 +1,109 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  color: #333;
+  text-align: center;
+}
+
+.container {
+  width: 90%;
+  max-width: 600px;
+  margin: auto;
+  overflow: hidden;
+}
+
+header {
+  background: #333;
+  color: #fff;
+  padding: 20px 0;
+}
+
+header h1 {
+  font-size: 36px;
+}
+
+#bio-generator {
+  padding: 50px 0;
+}
+
+#generator-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+#generator-box label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+#generator-box input,
+#generator-box textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#generator-box button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  font-size: 16px;
+  background: #ff6f61;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#generator-box button:hover {
+  background: #e05d50;
+}
+
+#output {
+  margin-top: 20px;
+}
+
+#bio-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+#bio-link:hover {
+  text-decoration: underline;
+}
+
+#qr-code {
+  margin-top: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 28px;
+  }
+
+  #generator-box input,
+  #generator-box textarea {
+    font-size: 14px;
+  }
+
+  #generator-box button {
+    font-size: 14px;
+  }
+}
