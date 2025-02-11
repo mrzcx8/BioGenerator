@@ -1,29 +1,67 @@
-<script>
-  // Fungsi untuk mendapatkan parameter dari URL
-  function getQueryParams() {
-    const params = {};
-    const queryString = window.location.search.substring(1);
-    const pairs = queryString.split('&');
-    pairs.forEach(pair => {
-      const [key, value] = pair.split('=');
-      params[key] = decodeURIComponent(value);
-    });
-    return params;
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Link Bio Generator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <h1>Link Bio Generator</h1>
+      <p>Buat halaman bio peribadi anda dengan mudah.</p>
+    </div>
+  </header>
 
-  // Dapatkan parameter dari URL
-  const params = getQueryParams();
+  <!-- Bio Generator Section -->
+  <section id="bio-generator" style="display: none;">
+    <div class="container">
+      <div id="generator-box">
+        <label for="name">Nama:</label>
+        <input type="text" id="name" placeholder="Masukkan nama anda">
 
-  // Paparkan maklumat bio jika parameter wujud
-  if (params.name && params.bio) {
-    document.write(`
-      <h1>${params.name}</h1>
-      <p>${params.bio}</p>
-      <div>
-        ${params.links.split(',').map(link => `<a href="${link}" target="_blank">${link}</a>`).join('<br>')}
+        <label for="profile-pic">Muat Naik Gambar Profil:</label>
+        <input type="file" id="profile-pic" accept="image/*">
+
+        <label for="bio">Bio:</label>
+        <textarea id="bio" placeholder="Tulis bio ringkas..."></textarea>
+
+        <label for="links">Pautan Media Sosial (pisahkan dengan koma):</label>
+        <textarea id="links" placeholder="Contoh: https://instagram.com/user, https://twitter.com/user"></textarea>
+
+        <button id="generate-bio">Hasilkan Link Bio</button>
+
+        <div id="output">
+          <p><strong>Pautan Bio Anda:</strong></p>
+          <a id="bio-link" href="#" target="_blank">Tiada pautan dihasilkan</a>
+
+          <p><strong>Kod QR untuk Pautan Bio:</strong></p>
+          <canvas id="qr-code"></canvas>
+        </div>
       </div>
-    `);
-  } else {
-    document.write('<h1>Halaman Bio Tidak Dijumpai</h1>');
-  }
-</script>
+    </div>
+  </section>
+
+  <!-- Bio Display Section -->
+  <section id="bio-display" style="display: none;">
+    <div class="container">
+      <h1 id="display-name"></h1>
+      <img id="display-profile-pic" alt="Profile Picture" class="profile-pic" style="display: none;">
+      <p id="display-bio"></p>
+      <div id="display-links"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 Link Bio Generator. Hak Cipta Terpelihara.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
